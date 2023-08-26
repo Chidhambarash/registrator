@@ -18,17 +18,17 @@ const defaultTheme = createTheme();
 export default function LogInForm() {
 
   const userList = useSelector((state) => state.inputs.user);
-    const [email, setEmail] = useState('');
+    const [mobile, setMobile] = useState('');
     const [signup, setsignup] = useState(0);
     const [password, setPassword] = useState('');
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(userList);
-    if(validator(userList,email,password)==="Success"){
+    if(validator(userList,mobile,password)==="Success"){
         setsignup(2);
         alert("logged in success");
     }
-    else if(validator(userList,email,password)==="not found"){
+    else if(validator(userList,mobile,password)==="not found"){
       alert("No users found , please sign up ");
   }
   else{
@@ -56,12 +56,11 @@ if(signup===0){
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              value={email}
-              onInput={ e=>setEmail(e.target.value)}
-              autoComplete="email"
+              id="number"
+              label="Mobile number"
+              name="mobile number"
+              value={mobile}
+              onInput={ e=>setMobile(e.target.value)}
               autoFocus
             />
             <TextField

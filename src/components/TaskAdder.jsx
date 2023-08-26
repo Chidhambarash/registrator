@@ -14,7 +14,6 @@ import ListItemText from '@mui/material/ListItemText';
 
 const defaultTheme = createTheme();
 export default function TaskAdder() {
-
     const [task, setTask] = useState([]);
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -22,6 +21,8 @@ export default function TaskAdder() {
     if(data.get('task')!== ""){
     setTask([...task, data.get('task')]);
     }
+    
+
   };
   return (
     <ThemeProvider theme={defaultTheme}>

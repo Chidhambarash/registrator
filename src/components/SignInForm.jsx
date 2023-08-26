@@ -12,6 +12,7 @@ import { useState } from 'react';
 import {useDispatch} from 'react-redux';
 import { newUserUpdate } from '../redux/actions';
 import LogInForm from './LogInForm';
+import { mobileValidator } from '../helpers/validator';
 
 
 
@@ -32,7 +33,7 @@ export default function SignUp() {
   const [success, setSuccess] = useState(false);
   const dispatch = useDispatch();
   const handleSubmit = (event) => {
-    if(password===confirmpassword && (password !== "" || confirmpassword !== "")){
+    if(password===confirmpassword && (password !== "" || confirmpassword !== "") && password.length>8 && mobileValidator(mobile)){
     event.preventDefault();   
     setSuccess(true) ;
       dispatch(newUserUpdate({
@@ -43,9 +44,21 @@ export default function SignUp() {
         "password": password,
       }));
     }else{
+        if(password.length<=8){
+            alert("password length must be greater than 8");
+            setConfirmPassword("");
+            setPassword("");
+        }
+        else if(password!==confirmpassword){
         alert("password mismatch");
         setConfirmPassword("");
         setPassword("");
+        }
+        else if(!mobileValidator(mobile)){
+            alert("Enter valid mobile number");  
+            setMobile("");
+        }
+      
         event.preventDefault();
         
     }
