@@ -15,7 +15,7 @@ import ListItemText from '@mui/material/ListItemText';
 const defaultTheme = createTheme();
 export default function TaskAdder() {
 
-    const [task, setTask] = useState(["hllo","hoii"]);
+    const [task, setTask] = useState([]);
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
